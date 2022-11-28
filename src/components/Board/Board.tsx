@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 
 import { TETROMINOS, START_COLUMN, END_COLUMN } from '../../constants';
-import { createBoard } from '../../utils';
+import { createBoard, getRandomTetromino } from '../../utils';
 
 import styles from './Board.module.css';
 
@@ -9,7 +9,7 @@ const Board: FC = () => {
   const [board, setBoard] = useState(createBoard());
 
   const renderTetromino = () => {
-    const currentTetromino = TETROMINOS.O;
+    const currentTetromino = getRandomTetromino();
 
     return board.map((row, yIdx) => {
       if (yIdx < currentTetromino.length) {
@@ -30,7 +30,9 @@ const Board: FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      {board.map((row) => row.map((cell) => <div>{cell.value}</div>))}
+      {board.map((row, xIdx) =>
+        row.map((cell, yIdx) => <div key={`${xIdx}-${yIdx}`}>{cell.value}</div>)
+      )}
     </div>
   );
 };

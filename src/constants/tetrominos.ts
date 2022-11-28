@@ -43,4 +43,7 @@ const TETROMINOS = {
   ],
 };
 
+type TetrominosType = keyof typeof TETROMINOS;
+
 export { TETROMINOS };
+export type { TetrominosType };
