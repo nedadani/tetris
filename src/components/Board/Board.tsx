@@ -1,12 +1,15 @@
 import React, { FC, useState, useEffect } from 'react';
+import { useAtom } from 'jotai';
 
-import { TETROMINOS, START_COLUMN, END_COLUMN } from '../../constants';
+import { gameOverAtom } from '../../atoms';
+import { START_COLUMN, END_COLUMN } from '../../constants';
 import { createBoard, getRandomTetromino } from '../../utils';
 
 import styles from './Board.module.css';
 
 const Board: FC = () => {
   const [board, setBoard] = useState(createBoard());
+  const [gameOver, setGameOver] = useAtom(gameOverAtom);
 
   const renderTetromino = () => {
     const currentTetromino = getRandomTetromino();
