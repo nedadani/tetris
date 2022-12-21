@@ -6,4 +6,7 @@ const createBoard = () => {
   );
 };
 
+type CreateBoardTypes = ReturnType<typeof createBoard>;
+
 export { createBoard };
+export type { CreateBoardTypes };
