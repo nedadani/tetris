@@ -4,35 +4,24 @@ import { useAtom } from 'jotai';
 import { gameOverAtom } from '../../atoms';
 import { START_COLUMN, END_COLUMN } from '../../constants';
 import { createBoard, getRandomTetromino } from '../../utils';
+import { usePlayer, useBoard, useControls } from '../../utils/hooks';
 
 import styles from './Board.module.css';
 
 const Board: FC = () => {
-  const [board, setBoard] = useState(createBoard());
-  const [gameOver, setGameOver] = useAtom(gameOverAtom);
+  const [isGameOver, setIsGameOver] = useAtom(gameOverAtom);
 
-  const renderTetromino = () => {
-    const currentTetromino = getRandomTetromino();
-
-    return board.map((row, yIdx) => {
-      if (yIdx < currentTetromino.length) {
-        return row.map((cell, xIdx) => {
-          if (START_COLUMN <= xIdx && xIdx < END_COLUMN) {
-            return { ...cell, value: currentTetromino[yIdx][xIdx - 3] };
-          }
-          return cell;
-        });
-      }
-      return row;
-    });
-  };
-
-  useEffect(() => {
-    setBoard(renderTetromino());
-  }, []);
+  const { player, resetPlayer, updatePlayerPos } = usePlayer();
+  const { board, setBoard } = useBoard(player, resetPlayer);
+  const { handleKeydown } = useControls(updatePlayerPos);
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => handleKeydown(e.key)}
+    >
       {board.map((row, xIdx) =>
         row.map((cell, yIdx) => <div key={`${xIdx}-${yIdx}`}>{cell.value}</div>)
       )}
