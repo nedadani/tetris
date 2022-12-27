@@ -1,10 +1,15 @@
 import { useAtom } from 'jotai';
 import { useAtomValue } from 'jotai/utils';
 
-import { usePlayer, useBoard, UpdatePlayerPosTypes } from '../../utils/hooks';
+import { usePlayer, useBoard, UpdatePlayerPosTypes, PlayerTypes } from '../../utils/hooks';
+import { checkIfCollided, CreateBoardTypes } from '../../utils';
 import { gameOverAtom } from '../../atoms';
 
-const useControls = (updatePlayerPos: ({ x, y, collided }: UpdatePlayerPosTypes) => void) => {
+const useControls = (
+  updatePlayerPos: ({ x, y, collided }: UpdatePlayerPosTypes) => void,
+  player: PlayerTypes,
+  board: CreateBoardTypes
+) => {
   const isGameOver = useAtomValue(gameOverAtom);
 
   const move = () => {};
@@ -14,8 +19,10 @@ const useControls = (updatePlayerPos: ({ x, y, collided }: UpdatePlayerPosTypes)
   };
 
   const moveTetromino = (direction: number) => {
-    move();
-    updatePlayerPos({ x: direction, y: 0, collided: false });
+    // move();
+    if (!checkIfCollided(player, board, { x: direction, y: 0 })) {
+      updatePlayerPos({ x: direction, y: 0, collided: false });
+    }
   };
 
   const dropTetromino = () => {
