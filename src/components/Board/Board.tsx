@@ -13,7 +13,7 @@ const Board: FC = () => {
 
   const { player, resetPlayer, updatePlayerPos } = usePlayer();
   const { board, setBoard } = useBoard(player, resetPlayer);
-  const { handleKeydown } = useControls(updatePlayerPos);
+  const { handleKeydown } = useControls(updatePlayerPos, player, board);
 
   return (
     <div
