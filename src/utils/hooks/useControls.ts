@@ -6,6 +6,7 @@ import { checkIfCollided, CreateBoardTypes } from '../../utils';
 import { gameOverAtom } from '../../atoms';
 
 const useControls = (
+  rotatePlayer: (board: CreateBoardTypes, direction: number) => void,
   updatePlayerPos: ({ x, y, collided }: UpdatePlayerPosTypes) => void,
   player: PlayerTypes,
   board: CreateBoardTypes
@@ -39,6 +40,9 @@ const useControls = (
       moveTetromino(1);
     } else if (key === 'ArrowDown') {
       dropTetromino();
+    } else if (key === 'ArrowUp') {
+      // rotating clockwise, can add a counter-clockwise statement too
+      rotatePlayer(board, 1);
     }
   };
 
