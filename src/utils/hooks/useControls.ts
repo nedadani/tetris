@@ -10,23 +10,24 @@ const useControls = (
   player: PlayerTypes,
   board: CreateBoardTypes
 ) => {
-  const isGameOver = useAtomValue(gameOverAtom);
-
-  const move = () => {};
-
-  const drop = () => {
-    updatePlayerPos({ x: 0, y: 1, collided: false });
-  };
+  const [isGameOver, setIsGameOver] = useAtom(gameOverAtom);
 
   const moveTetromino = (direction: number) => {
-    // move();
     if (!checkIfCollided(player, board, { x: direction, y: 0 })) {
       updatePlayerPos({ x: direction, y: 0, collided: false });
     }
   };
 
   const dropTetromino = () => {
-    drop();
+    if (!checkIfCollided(player, board, { x: 0, y: 1 })) {
+      updatePlayerPos({ x: 0, y: 1, collided: false });
+    } else {
+      if (player.pos.y < 1) {
+        setIsGameOver(true);
+        // set drop time to 0
+      }
+      updatePlayerPos({ x: 0, y: 1, collided: true });
+    }
   };
 
   const handleKeydown = (key: string) => {
