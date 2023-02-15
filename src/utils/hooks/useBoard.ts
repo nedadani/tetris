@@ -26,8 +26,8 @@ const useBoard = (player: PlayerTypes, resetPlayer: () => void) => {
       );
 
       // TODO: find bug here
-      player.tetromino.forEach((row, y) => {
-        row.forEach((value, x) => {
+      player.tetromino.map((row, y) => {
+        row.map((value, x) => {
           if (value) {
             newBoard[y + player.pos.y][x + player.pos.x] = { value, isEmpty: !player.collided };
           }
