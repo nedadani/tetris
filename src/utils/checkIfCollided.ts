@@ -1,4 +1,4 @@
-import { usePlayer, useBoard, UpdatePlayerPosTypes, PlayerTypes } from './hooks';
+import { PlayerTypes } from './hooks';
 import { CreateBoardTypes } from './createBoard';
 
 const checkIfCollided = (

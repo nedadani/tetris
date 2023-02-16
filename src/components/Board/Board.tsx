@@ -1,9 +1,7 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC } from 'react';
 import { useAtom } from 'jotai';
 
 import { gameOverAtom } from '../../atoms';
-import { START_COLUMN, END_COLUMN } from '../../constants';
-import { createBoard, getRandomTetromino } from '../../utils';
 import { usePlayer, useBoard, useControls } from '../../utils/hooks';
 
 import styles from './Board.module.css';
