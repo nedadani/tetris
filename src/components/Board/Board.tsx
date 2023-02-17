@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 
 import { gameOverAtom } from '../../atoms';
 import { usePlayer, useBoard, useControls } from '../../utils/hooks';
@@ -7,7 +7,7 @@ import { usePlayer, useBoard, useControls } from '../../utils/hooks';
 import styles from './Board.module.css';
 
 const Board: FC = () => {
-  const [isGameOver, setIsGameOver] = useAtom(gameOverAtom);
+  const isGameOver = useAtomValue(gameOverAtom);
 
   const { player, resetPlayer, updatePlayerPos, rotatePlayer } = usePlayer();
   const { board, setBoard } = useBoard(player, resetPlayer);
