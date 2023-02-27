@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 
-import { boardAtom, PlayerTypes } from '../../atoms';
+import { boardAtom, playerAtom } from '../../atoms';
 import { CreateBoardTypes } from '../../utils';
+import { usePlayer } from '../hooks';
 import { DEFAULT_CELL, DefaultCellType } from '../../constants';
 
-const useBoard = (player: PlayerTypes, resetPlayer: () => void) => {
+const useBoard = () => {
   const [board, setBoard] = useAtom(boardAtom);
+  const { resetPlayer } = usePlayer();
+  const player = useAtomValue(playerAtom);
 
   useEffect(() => {
     const clearRows = (newBoard: CreateBoardTypes) =>

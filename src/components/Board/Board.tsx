@@ -9,8 +9,8 @@ import styles from './Board.module.css';
 const Board: FC = () => {
   const isGameOver = useAtomValue(gameOverAtom);
 
-  const { player, resetPlayer, updatePlayerPos, rotatePlayer } = usePlayer();
-  const { board, setBoard } = useBoard(player, resetPlayer);
+  const { player, updatePlayerPos, rotatePlayer } = usePlayer();
+  const { board, setBoard } = useBoard();
   const { handleKeydown } = useControls(rotatePlayer, updatePlayerPos, player, board);
 
   return (
