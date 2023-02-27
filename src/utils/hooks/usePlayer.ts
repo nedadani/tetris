@@ -1,5 +1,7 @@
 import { useCallback, useState } from 'react';
+import { useAtom } from 'jotai';
 
+import { playerAtom } from '../../atoms';
 import { checkIfCollided, CreateBoardTypes } from '../../utils';
 import { BOARD_WIDTH } from '../../constants';
 import { getRandomTetromino } from '../getRandomTetromino';
@@ -10,18 +12,8 @@ interface UpdatePlayerPosTypes {
   collided: boolean;
 }
 
-interface PlayerTypes {
-  pos: { x: number; y: number };
-  tetromino: number[][];
-  collided: boolean;
-}
-
 const usePlayer = () => {
-  const [player, setPlayer] = useState({
-    pos: { x: BOARD_WIDTH / 2 - 2, y: 0 },
-    tetromino: getRandomTetromino(),
-    collided: false,
-  });
+  const [player, setPlayer] = useAtom(playerAtom);
 
   const rotate = (tetromino: number[][], direction: number) => {
     // rows to columns and vice versa
@@ -75,4 +67,4 @@ const usePlayer = () => {
 };
 
 export { usePlayer };
-export type { PlayerTypes, UpdatePlayerPosTypes };
+export type { UpdatePlayerPosTypes };

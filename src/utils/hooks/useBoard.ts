@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
 
-import { boardAtom } from '../../atoms';
+import { boardAtom, PlayerTypes } from '../../atoms';
 import { CreateBoardTypes } from '../../utils';
 import { DEFAULT_CELL, DefaultCellType } from '../../constants';
-import { PlayerTypes } from '../../utils/hooks';
 
 const useBoard = (player: PlayerTypes, resetPlayer: () => void) => {
   const [board, setBoard] = useAtom(boardAtom);

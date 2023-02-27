@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useAtom } from 'jotai';
 
-import { useInterval, UpdatePlayerPosTypes, PlayerTypes } from '../../utils/hooks';
+import { useInterval, UpdatePlayerPosTypes } from '../../utils/hooks';
 import { checkIfCollided, CreateBoardTypes } from '../../utils';
-import { gameOverAtom } from '../../atoms';
+import { gameOverAtom, PlayerTypes } from '../../atoms';
 
 import { DROP_TIME } from '../../constants';
 

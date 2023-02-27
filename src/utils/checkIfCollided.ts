@@ -1,4 +1,4 @@
-import { PlayerTypes } from './hooks';
+import { PlayerTypes } from '../atoms';
 import { CreateBoardTypes } from './createBoard';
 
 const checkIfCollided = (
