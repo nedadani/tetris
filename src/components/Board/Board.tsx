@@ -2,16 +2,14 @@ import { FC } from 'react';
 import { useAtomValue } from 'jotai';
 
 import { gameOverAtom } from '../../atoms';
-import { usePlayer, useBoard, useControls } from '../../utils/hooks';
+import { useBoard, useControls } from '../../utils/hooks';
 
 import styles from './Board.module.css';
 
 const Board: FC = () => {
   const isGameOver = useAtomValue(gameOverAtom);
-
-  const { player, updatePlayerPos, rotatePlayer } = usePlayer();
-  const { board, setBoard } = useBoard();
-  const { handleKeydown } = useControls(rotatePlayer, updatePlayerPos, player, board);
+  const { board } = useBoard();
+  const { handleKeydown } = useControls();
 
   return (
     <div
