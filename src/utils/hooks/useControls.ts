@@ -1,20 +1,18 @@
 import { useState } from 'react';
 import { useAtom } from 'jotai';
 
-import { useInterval, UpdatePlayerPosTypes } from '../../utils/hooks';
-import { checkIfCollided, CreateBoardTypes } from '../../utils';
-import { gameOverAtom, PlayerTypes } from '../../atoms';
+import { useInterval, usePlayer, useBoard } from '../../utils/hooks';
+import { checkIfCollided } from '../../utils';
+import { gameOverAtom } from '../../atoms';
 
 import { DROP_TIME } from '../../constants';
 
-const useControls = (
-  rotatePlayer: (board: CreateBoardTypes, direction: number) => void,
-  updatePlayerPos: ({ x, y, collided }: UpdatePlayerPosTypes) => void,
-  player: PlayerTypes,
-  board: CreateBoardTypes
-) => {
+const useControls = () => {
   const [dropTime, setDropTime] = useState<number | null>(DROP_TIME);
   const [isGameOver, setIsGameOver] = useAtom(gameOverAtom);
+
+  const { player, updatePlayerPos, rotatePlayer } = usePlayer();
+  const { board } = useBoard();
 
   useInterval(() => {
     dropTetromino();
@@ -34,7 +32,7 @@ const useControls = (
         setIsGameOver(true);
         setDropTime(null);
       }
-      updatePlayerPos({ x: 0, y: 1, collided: true });
+      updatePlayerPos({ x: 0, y: 0, collided: true });
     }
   };
 
@@ -49,7 +47,7 @@ const useControls = (
       dropTetromino();
     } else if (key === 'ArrowUp') {
       // rotating clockwise, can add a counter-clockwise statement too
-      rotatePlayer(board, 1);
+      rotatePlayer(1);
     }
   };
 
