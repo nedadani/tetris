@@ -8,8 +8,8 @@ import { DEFAULT_CELL, DefaultCellType } from '../../constants';
 
 const useBoard = () => {
   const [board, setBoard] = useAtom(boardAtom);
-  const { resetPlayer } = usePlayer();
   const player = useAtomValue(playerAtom);
+  const { resetPlayer } = usePlayer();
 
   useEffect(() => {
     const clearRows = (newBoard: CreateBoardTypes) =>
@@ -29,7 +29,6 @@ const useBoard = () => {
         row.map((cell) => (cell.isEmpty ? { ...DEFAULT_CELL } : cell))
       );
 
-      // TODO: find bug here
       player.tetromino.map((row, y) => {
         row.map((value, x) => {
           if (value) {
