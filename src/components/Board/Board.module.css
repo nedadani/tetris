@@ -8,4 +8,33 @@
 
 .cell {
   border: 1px solid var(--dark-1);
+  text-align: center;
+}
+
+.cell[data-value='O'] {
+  background-color: var(--yellow);
+}
+
+.cell[data-value='I'] {
+  background-color: var(--green);
+}
+
+.cell[data-value='T'] {
+  background-color: var(--purple);
+}
+
+.cell[data-value='S'] {
+  background-color: var(--red);
+}
+
+.cell[data-value='Z'] {
+  background-color: var(--orange);
+}
+
+.cell[data-value='L'] {
+  background-color: var(--blue);
+}
+
+.cell[data-value='J'] {
+  background-color: var(--green);
 }

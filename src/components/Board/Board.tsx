@@ -20,9 +20,7 @@ const Board: FC = () => {
     >
       {board.map((row, xIdx) =>
         row.map((cell, yIdx) => (
-          <div key={`${xIdx}-${yIdx}`} className={styles.cell}>
-            {cell.value}
-          </div>
+          <div key={`${xIdx}-${yIdx}`} className={styles.cell} data-value={cell.value} />
         ))
       )}
     </div>
