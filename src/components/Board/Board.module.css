@@ -1,6 +1,11 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(12, auto);
-  grid-template-rows: repeat(20, auto);
-  max-width: 350px;
+  grid-template-columns: repeat(12, 30px);
+  grid-template-rows: repeat(20, 30px);
+  width: fit-content;
+  margin: auto;
+}
+
+.cell {
+  border: 1px solid var(--dark-1);
 }

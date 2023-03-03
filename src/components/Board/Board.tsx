@@ -19,7 +19,11 @@ const Board: FC = () => {
       onKeyDown={(e) => handleKeydown(e.key)}
     >
       {board.map((row, xIdx) =>
-        row.map((cell, yIdx) => <div key={`${xIdx}-${yIdx}`}>{cell.value}</div>)
+        row.map((cell, yIdx) => (
+          <div key={`${xIdx}-${yIdx}`} className={styles.cell}>
+            {cell.value}
+          </div>
+        ))
       )}
     </div>
   );
