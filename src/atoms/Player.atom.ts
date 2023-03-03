@@ -5,7 +5,7 @@ import { getRandomTetromino } from '../utils/getRandomTetromino';
 
 interface PlayerTypes {
   pos: { x: number; y: number };
-  tetromino: number[][];
+  tetromino: (number | string)[][];
   collided: boolean;
 }
 
