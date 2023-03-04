@@ -9,8 +9,7 @@ import styles from './Board.module.css';
 const Board: FC = () => {
   const isGameOver = useAtomValue(gameOverAtom);
   const { board } = useBoard();
-  const { handleKeydown, setTouchStartX, setTouchStartY, setTouchEndX, setTouchEndY } =
-    useControls();
+  const { handleKeydown, setTouchStart, setTouchEnd } = useControls();
 
   return (
     <div
@@ -20,12 +19,10 @@ const Board: FC = () => {
       onKeyDown={(e) => handleKeydown(e.key)}
       onClick={(e) => alert('rotate')}
       onTouchStart={(e) => {
-        setTouchStartX(e.changedTouches[0].screenX);
-        setTouchStartY(e.changedTouches[0].screenY);
+        setTouchStart(e.changedTouches[0].screenX, e.changedTouches[0].screenY);
       }}
       onTouchEnd={(e) => {
-        setTouchEndX(e.changedTouches[0].screenX);
-        setTouchEndY(e.changedTouches[0].screenY);
+        setTouchEnd(e.changedTouches[0].screenX, e.changedTouches[0].screenY);
       }}
     >
       {board.map((row, xIdx) =>

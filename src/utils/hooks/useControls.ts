@@ -19,32 +19,24 @@ const useControls = () => {
   const { board } = useBoard();
 
   useEffect(() => {
-    if ((touchStartX && touchEndX) || (touchStartY && touchEndY)) {
-      if (Math.abs(touchStartX - touchEndX) > 100) {
-        if (touchEndX < touchStartX) alert('swiped left!');
-        if (touchEndX > touchStartX) alert('swiped right!');
-      }
-
-      if (Math.abs(touchStartY - touchEndY) > 100) {
-        if (touchEndY < touchStartY) alert('rotate');
-        if (touchEndY > touchStartY) alert('swiped down!');
-      }
+    if (touchStartX && touchEndX && Math.abs(touchStartX - touchEndX) > 100) {
+      if (touchEndX < touchStartX) alert('swiped left!');
+      if (touchEndX > touchStartX) alert('swiped right!');
 
       setTouchEndX(0);
       setTouchStartX(0);
+    }
+  }, [touchStartX, touchEndX, setTouchStartX, setTouchEndX]);
+
+  useEffect(() => {
+    if (touchStartY && touchEndY && Math.abs(touchStartY - touchEndY) > 100) {
+      if (touchEndY < touchStartY) alert('rotate');
+      if (touchEndY > touchStartY) alert('swiped down!');
+
       setTouchEndY(0);
       setTouchStartY(0);
     }
-  }, [
-    touchStartX,
-    touchEndX,
-    touchStartY,
-    touchEndY,
-    setTouchStartX,
-    setTouchStartY,
-    setTouchEndX,
-    setTouchEndY,
-  ]);
+  }, [touchStartY, touchEndY, setTouchStartY, setTouchEndY]);
 
   useInterval(() => {
     dropTetromino();
@@ -83,7 +75,17 @@ const useControls = () => {
     }
   };
 
-  return { handleKeydown, setTouchStartX, setTouchStartY, setTouchEndX, setTouchEndY };
+  const setTouchStart = (x: number, y: number) => {
+    setTouchStartX(x);
+    setTouchStartY(y);
+  };
+
+  const setTouchEnd = (x: number, y: number) => {
+    setTouchEndX(x);
+    setTouchEndY(y);
+  };
+
+  return { handleKeydown, setTouchStart, setTouchEnd };
 };
 
 export { useControls };
