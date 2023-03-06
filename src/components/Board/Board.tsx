@@ -18,12 +18,12 @@ const Board: FC = () => {
       tabIndex={0}
       onKeyDown={(e) => handleKeydown(e.key)}
       onClick={(e) => alert('rotate')}
-      onTouchStart={(e) => {
-        setTouchStart(e.changedTouches[0].screenX, e.changedTouches[0].screenY);
-      }}
-      onTouchEnd={(e) => {
-        setTouchEnd(e.changedTouches[0].screenX, e.changedTouches[0].screenY);
-      }}
+      onTouchStart={(e) =>
+        setTouchStart({ x: e.changedTouches[0].screenX, y: e.changedTouches[0].screenY })
+      }
+      onTouchEnd={(e) =>
+        setTouchEnd({ x: e.changedTouches[0].screenX, y: e.changedTouches[0].screenY })
+      }
     >
       {board.map((row, xIdx) =>
         row.map((cell, yIdx) => (
