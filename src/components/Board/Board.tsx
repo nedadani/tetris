@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 
-import { gameOverAtom } from '../../atoms';
+import { gameOverAtom, rotatePlayerAtom } from '../../atoms';
 import { useBoard, useControls } from '../../utils/hooks';
 
 import styles from './Board.module.css';
@@ -10,6 +10,7 @@ const Board: FC = () => {
   const isGameOver = useAtomValue(gameOverAtom);
   const { board } = useBoard();
   const { handleKeydown, setTouchStart, setTouchEnd } = useControls();
+  const rotatePlayer = useSetAtom(rotatePlayerAtom);
 
   return (
     <div
@@ -17,7 +18,7 @@ const Board: FC = () => {
       role="button"
       tabIndex={0}
       onKeyDown={(e) => handleKeydown(e.key)}
-      onClick={(e) => alert('rotate')}
+      onClick={() => rotatePlayer(1)}
       onTouchStart={(e) =>
         setTouchStart({ x: e.changedTouches[0].screenX, y: e.changedTouches[0].screenY })
       }

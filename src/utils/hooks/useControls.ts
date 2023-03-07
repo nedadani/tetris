@@ -23,12 +23,12 @@ const useControls = () => {
 
     if ((startX && endX) || (startY && endY)) {
       if (Math.abs(startX - endX) > 100) {
-        if (endX < startX) alert('swiped left!');
-        if (endX > startX) alert('swiped right!');
+        if (endX < startX) moveTetromino(-1);
+        if (endX > startX) moveTetromino(1);
       }
       if (Math.abs(startY - endY) > 100) {
-        if (endY < startY) alert('rotate');
-        if (endY > startY) alert('swiped down!');
+        if (endY < startY) rotatePlayer(1);
+        if (endY > startY) dropTetromino();
       }
 
       setTouchEnd({ x: 0, y: 0 });
