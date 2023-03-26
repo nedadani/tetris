@@ -28,7 +28,7 @@ const useControls = () => {
       }
       if (Math.abs(startY - endY) > 100) {
         if (endY < startY) rotatePlayer(1);
-        if (endY > startY) dropTetromino();
+        if (endY > startY) setDropTime(10);
       }
 
       setTouchEnd({ x: 0, y: 0 });
@@ -55,6 +55,7 @@ const useControls = () => {
         setDropTime(null);
       }
       updatePlayerPos({ x: 0, y: 0, collided: true });
+      setDropTime(DROP_TIME);
     }
   };
 
@@ -70,6 +71,8 @@ const useControls = () => {
     } else if (key === 'ArrowUp') {
       // rotating clockwise, can add a counter-clockwise statement too
       rotatePlayer(1);
+    } else if (key === ' ') {
+      setDropTime(10);
     }
   };
 
