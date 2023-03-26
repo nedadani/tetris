@@ -18,7 +18,7 @@ const Board: FC = () => {
       role="button"
       tabIndex={0}
       onKeyDown={(e) => handleKeydown(e.key)}
-      onClick={() => rotatePlayer(1)}
+      onClick={() => !isGameOver && rotatePlayer(1)}
       onTouchStart={(e) =>
         setTouchStart({ x: e.changedTouches[0].screenX, y: e.changedTouches[0].screenY })
       }
