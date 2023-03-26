@@ -31,7 +31,7 @@ const useBoard = () => {
 
       player.tetromino.map((row, y) => {
         row.map((value, x) => {
-          if (value) {
+          if (value && newBoard[y + player.pos.y][x + player.pos.x].isEmpty) {
             newBoard[y + player.pos.y][x + player.pos.x] = { value, isEmpty: !player.collided };
           }
         });
