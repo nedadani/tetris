@@ -1,0 +1,13 @@
+.button {
+  margin: 0;
+  padding: 8px 16px;
+  width: 200px;
+
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+
+  background: var(--background);
+  border: 2px solid var(--light-1);
+  color: var(--white);
+  cursor: pointer;
+}
