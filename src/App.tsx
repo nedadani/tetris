@@ -3,32 +3,27 @@ import { useAtomValue } from 'jotai';
 
 import Board from './components/Board';
 import StartGameModal from './components/StartGameModal';
+import GameOverModal from './components/GameOverModal';
 
-import { startGameAtom } from './atoms';
+import { startGameAtom, gameOverAtom } from './atoms';
 
 import styles from './App.module.css';
 
 const App = () => {
-  const showStartGameModal = useAtomValue(startGameAtom);
+  const startGame = useAtomValue(startGameAtom);
+  const isGameOver = useAtomValue(gameOverAtom);
   const gameArea = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (gameArea.current?.firstChild) {
       (gameArea.current.firstChild as HTMLButtonElement).focus();
     }
-  }, [showStartGameModal]);
-
-  if (showStartGameModal) {
-    return (
-      <div className={styles.wrapper}>
-        <StartGameModal />
-        <Board />
-      </div>
-    );
-  }
+  }, [startGame, isGameOver]);
 
   return (
     <div className={styles.wrapper} ref={gameArea}>
+      {startGame && <StartGameModal />}
+      {!startGame && isGameOver && <GameOverModal />}
       <Board />
     </div>
   );
