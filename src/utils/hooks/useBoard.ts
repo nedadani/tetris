@@ -46,7 +46,7 @@ const useBoard = () => {
     };
 
     setBoard((prev) => updateBoard(prev));
-  }, [player, resetPlayer, setBoard]);
+  }, [player]);
 
   return { board, setBoard };
 };
